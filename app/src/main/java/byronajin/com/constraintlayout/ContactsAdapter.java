@@ -38,8 +38,12 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         Contact contact = contacts.get(position);
 
         String indexValue = contact.getName().substring(0,1).toUpperCase();
-        viewHolder.contactIndex.setText(indexValue);
         viewHolder.contactName.setText(contact.getName());
+        if(contact.isIndex()){
+            viewHolder.contactIndex.setText(indexValue);
+        } else {
+            viewHolder.contactIndex.setText("");
+        }
     }
 
     @Override

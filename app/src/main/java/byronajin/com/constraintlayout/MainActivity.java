@@ -21,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView contactsRecyclerView = (RecyclerView) findViewById(R.id.contacts);
         ArrayList<Contact> contactList = getContacts();
         orderContacts(contactList);
+        addHeaders(contactList);
 
         ContactsAdapter adapter = new ContactsAdapter(this, contactList);
         contactsRecyclerView.setAdapter(adapter);
         contactsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-    
-    private void orderContacts(ArrayList<Contact> contactList){
+
+    private void orderContacts(ArrayList<Contact> contactList) {
         Collections.sort(contactList, new Comparator<Contact>() {
             @Override
             public int compare(Contact lhs, Contact rhs) {
@@ -39,6 +40,19 @@ public class MainActivity extends AppCompatActivity {
                 return firstLetterComparison;
             }
         });
+    }
+
+    private void addHeaders(ArrayList<Contact> contactList) {
+        String actualHeader = "";
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact currentContact = contactList.get(i);
+            String contactIndex = currentContact.getName().substring(0, 1);
+
+            if (!contactIndex.toUpperCase().equals(actualHeader.toUpperCase())) {
+                currentContact.setIndex(true);
+                actualHeader = contactIndex.toUpperCase();
+            }
+        }
     }
 
     private ArrayList<Contact> getContacts() {

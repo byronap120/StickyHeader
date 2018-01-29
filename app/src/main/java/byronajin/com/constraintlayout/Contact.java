@@ -7,6 +7,7 @@ package byronajin.com.constraintlayout;
 public class Contact {
 
     private String name;
+    boolean index;
 
     public String getName() {
         return name;
@@ -14,5 +15,13 @@ public class Contact {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isIndex() {
+        return index;
+    }
+
+    public void setIndex(boolean index) {
+        this.index = index;
     }
 }
